@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import keywords.RnaTranscription;
 
-public class TestNGSimpleTest {
+public class TestClass {
 	private RnaTranscription rnaTranscription;
 
     @Before
