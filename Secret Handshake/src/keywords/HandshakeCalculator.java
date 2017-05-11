@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class HandshakeCalculator {
-	private String outputStrings[] = {"WINK" , "DOUBLE_BLINK", "CLOSE_YOUR_EYES" ,"JUMP"};
+	private String outputStrings[] = { "WINK", "DOUBLE_BLINK", "CLOSE_YOUR_EYES", "JUMP" };
 
 	public List<String> calculateHandshake(int decimalNum) {
 		List<String> handShakeList = new ArrayList<String>();
@@ -13,18 +13,18 @@ public class HandshakeCalculator {
 			System.out.println(decimalNum);
 			String binaryForm = Integer.toBinaryString(decimalNum);
 			System.out.println(binaryForm);
-			for(int count=0; count<binaryForm.length();count++){
-				if(Character.toString(binaryForm.charAt(count)).equals("1") & count <= 3){
-					handShakeList.add(outputStrings[count]);
+			for (int count = binaryForm.length() - 1, outputStrCount = 0; count >= 0
+					& outputStrCount < outputStrings.length; count--, outputStrCount++) {
+				if (Character.toString(binaryForm.charAt(count)).equals("1")) {
+					handShakeList.add(outputStrings[outputStrCount]);
 				}
-				else if(binaryForm.length() > 4 && binaryForm.charAt(4) == '1'){
-					Collections.reverse(handShakeList);
-				}
+			}
+			if (binaryForm.length() > 4 && binaryForm.charAt(4) == '1') {
+				Collections.reverse(handShakeList);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(handShakeList);
 		return handShakeList;
 	}
 
