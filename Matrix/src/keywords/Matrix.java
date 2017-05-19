@@ -2,7 +2,8 @@ package keywords;
 
 public class Matrix {
 	private static String[] rowsString;
-	private static int[] rowInterger;
+	private static int[] rowInteger;
+	private static int[] colInteger;
 
 	public Matrix(String matrixAsString) {
 		Matrix.rowsString = matrixAsString.split("\n");
@@ -29,35 +30,51 @@ public class Matrix {
 		return colCount;
 	}
 
-	public int[] getRow(int i) {
+	public int[] getRow(int rowNum) {
 		try {
-			return convertStringRowToIntRow(rowsString[i]);
+			return convertStringRowToIntRow(rowsString[rowNum]);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-
-
-	public int getColumn(int i) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int[] getColumn(int colNum) {
+		try {
+			return convertStringColToIntCol(colNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	private int[] convertStringRowToIntRow(String string) {
 		try {
-			String[] splitRowString = string.split("\\s");
-			for(int count=0;count<splitRowString.length;count++){
-				System.out.println("value: "+splitRowString[count]);
-				rowInterger[count] = Integer.parseInt(splitRowString[count]);
+
+			String[] rowStringSplit = string.trim().split(" ");
+			rowInteger = new int[rowStringSplit.length];
+
+			for (int i = 0; i < rowStringSplit.length; i++) {
+				rowInteger[i] = Integer.parseInt(rowStringSplit[i]);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(rowInterger);
-		return rowInterger;
+		return rowInteger;
 	}
-	
+
+	private int[] convertStringColToIntCol(int colNum) {
+		try {
+			String[] splitColString;
+			colInteger = new int[rowsString.length];
+			for (int count = 0; count < rowsString.length; count++) {
+				splitColString = rowsString[count].trim().split(" ");
+				colInteger[count] = Integer.parseInt(splitColString[colNum]);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return colInteger;
+	}
 
 }

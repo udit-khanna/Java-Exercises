@@ -86,98 +86,94 @@ public class TestNGSimpleTest {
         @Test(dataProvider = "dataProvider3")
         public void getFirstRowTest(String matrixAsString, int[] firstRow) {
         	this.matrix = new Matrix(matrixAsString);
-        	System.out.println(firstRow + "--");
             Assert.assertEquals(firstRow, matrix.getRow(0));
         }
     }
 
     
     
-//    public static class GetLastRowTest {
-//        private Matrix matrix;
-//        private int[] lastRow;
-//
-//        @DataProvider(name = "dataProvider4")
-//        public static Collection<Object[]> data() {
-//            return Arrays.asList(new Object[][]{
-//                    {"0", new int[] {0}},
-//                    {"0 1", new int[] {0, 1}},
-//                    {  "0\n"
-//                     + "1", new int[] {1}},
-//                    {  "0 1\n"
-//                     + "2 3", new int[] {2, 3}},
-//                    {  "0 1 2\n"
-//                     + "3 4 5\n"
-//                     + "6 7 8", new int[] {6, 7, 8}}
-//            });
-//        }
-//
-//
-//        @Test(dataProvider = "dataProvider4")
-//        public void getLastRowTest(String matrixAsString, int lastRow) {
-//        	this.matrix = new Matrix(matrixAsString);
-//            Assert.assertEquals(lastRow, matrix.getRow(matrix.getRowsCount() - 1));
-//        }
-//    }
-//
-//    
-//    
-//    public static class GetFirstColumnTest {
-//        private Matrix matrix;
-//        private int[] firstColumn;
-//
-//        @DataProvider(name = "dataProvider5")
-//        public static Collection<Object[]> data() {
-//            return Arrays.asList(new Object[][]{
-//                    {"0", new int[] {0}},
-//                    {"0 1", new int[] {0}},
-//                    {  "0\n"
-//                     + "1", new int[] {0, 1}},
-//                    {  "0 1\n"
-//                     + "2 3", new int[] {0, 2}},
-//                    {  "0 1 2\n"
-//                     + "3 4 5\n"
-//                     + "6 7 8", new int[] {0, 3, 6}}
-//            });
-//        }
-//
-//
-//        @Test(dataProvider = "dataProvider5")
-//        public void getFirstColumnTest(String matrixAsString, int firstColumn) {
-//        	this.matrix = new Matrix(matrixAsString);
-//            Assert.assertEquals(firstColumn, matrix.getColumn(0));
-//        }
-//    }
-//
-//
-//    
-//    
-//    public static class GetLastColumnTest {
-//        private Matrix matrix;
-//        private int[] lastColumn;
-//
-//        @DataProvider(name = "dataProvider6")
-//        public static Collection<Object[]> data() {
-//            return Arrays.asList(new Object[][]{
-//                    {"0", new int[] {0}},
-//                    {"0 1", new int[] {1}},
-//                    {  "0\n"
-//                     + "1", new int[] {0, 1}},
-//                    {  "0 1\n"
-//                     + "2 3", new int[] {1, 3}},
-//                    {  "0 1 2\n"
-//                     + "3 4 5\n"
-//                     + "6 7 8", new int[] {2, 5, 8}}
-//            });
-//        }
-//
-//
-//        @Test(dataProvider = "dataProvider6")
-//        public void getLastColumnTest(String matrixAsString, int lastColumn) {
-//        	this.matrix = new Matrix(matrixAsString);
-//            Assert.assertEquals(lastColumn, matrix.getColumn(matrix.getColumnsCount() - 1));
-//        }
-//    }
+    public static class GetLastRowTest {
+        private Matrix matrix;
+
+	      @DataProvider(name = "dataProvider4")
+	      public static Object[][] data() {
+	          return new Object[][]{
+	        	  {"0", new int[] {0}},
+	              {"0 1", new int[] {0, 1}},
+	              {  "0\n"
+	               + "1", new int[] {1}},
+	              {  "0 1\n"
+	               + "2 3", new int[] {2, 3}},
+	              {  "0 1 2\n"
+	               + "3 4 5\n"
+	               + "6 7 8", new int[] {6, 7, 8}}
+	          };
+	      }
+
+
+        @Test(dataProvider = "dataProvider4")
+        public void getLastRowTest(String matrixAsString, int[] lastRow) {
+        	this.matrix = new Matrix(matrixAsString);
+            Assert.assertEquals(lastRow, matrix.getRow(matrix.getRowsCount() - 1));
+        }
+    }
+
+    
+    
+    public static class GetFirstColumnTest {
+        private Matrix matrix;
+
+        @DataProvider(name = "dataProvider5")
+        public static Object[][] data() {
+            return new Object[][]{
+                    {"0", new int[] {0}},
+                    {"0 1", new int[] {0}},
+                    {  "0\n"
+                     + "1", new int[] {0, 1}},
+                    {  "0 1\n"
+                     + "2 3", new int[] {0, 2}},
+                    {  "0 1 2\n"
+                     + "3 4 5\n"
+                     + "6 7 8", new int[] {0, 3, 6}}
+            };
+        }
+
+
+        @Test(dataProvider = "dataProvider5")
+        public void getFirstColumnTest(String matrixAsString, int[] firstColumn) {
+        	this.matrix = new Matrix(matrixAsString);
+            Assert.assertEquals(firstColumn, matrix.getColumn(0));
+        }
+    }
+
+
+    
+    
+    public static class GetLastColumnTest {
+        private Matrix matrix;
+
+        @DataProvider(name = "dataProvider6")
+        public static Object[][] data() {
+            return new Object[][]{
+                    {"0", new int[] {0}},
+                    {"0 1", new int[] {1}},
+                    {  "0\n"
+                     + "1", new int[] {0, 1}},
+                    {  "0 1\n"
+                     + "2 3", new int[] {1, 3}},
+                    {  "0 1 2\n"
+                     + "3 4 5\n"
+                     + "6 7 8", new int[] {2, 5, 8}}
+            };
+        }
+
+
+        @Test(dataProvider = "dataProvider6")
+        public void getLastColumnTest(String matrixAsString, int[] lastColumn) {
+        	this.matrix = new Matrix(matrixAsString);
+            Assert.assertEquals(lastColumn, matrix.getColumn(matrix.getColumnsCount() - 1));
+        }
+    }
 	
 	
 }
