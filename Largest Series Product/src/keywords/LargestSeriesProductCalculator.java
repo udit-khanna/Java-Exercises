@@ -1,11 +1,12 @@
 package keywords;
 
 public class LargestSeriesProductCalculator {
+	private static long largestProduct;
 	private static String inputString;
 
 	public LargestSeriesProductCalculator(String string) {
+		checkInputString(string);
 		LargestSeriesProductCalculator.inputString = string.trim();
-		checkInputString();
 	}
 
 	public long calculateLargestProductForSeriesLength(int i) {
@@ -15,26 +16,27 @@ public class LargestSeriesProductCalculator {
 			if (inputString.equals("") & i==0){
 				return 1;
 			}
-			for(int count=0; (i+count)<inputString.length(); count++ ){
+			System.out.println("inputString.length(): " + inputString.length());
+			for(int count=0; (i+count)<=inputString.length(); count++ ){
 				String series = inputString.substring(count, (i+count));
-				int seriesProduct = 1;
+				long seriesProduct = 1;
 				for(int seriesCount = 0; seriesCount<series.length(); seriesCount++){
 					seriesProduct = seriesProduct*Character.getNumericValue(series.charAt(seriesCount));
-					if(seriesProduct>largestProduct){
-						largestProduct = seriesProduct;
-					}
 				}
-				
+				if(seriesProduct>largestProduct){
+					largestProduct = seriesProduct;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return largestProduct;
 	}
 
 	private void checkInputSeriesLength(int i) {
-		if(i<0){
+		if(i==0){
+			largestProduct=1;
+		} else if(i<0){
 			throw new IllegalArgumentException("Series length must be non-negative.");
 		} else if(i > inputString.length()){
 			throw new IllegalArgumentException("Series length must be less than or equal to the length of the string to search.");
@@ -49,10 +51,12 @@ public class LargestSeriesProductCalculator {
 		return inputStringInIntegerFormat;
 	}
 
-	public void checkInputString() {
-		if (inputString.equals(null))
+	public void checkInputString(String string) {
+		if (string == null)
 			throw new IllegalArgumentException("String to search must be non-null.");
-		else if (!inputString.matches("[0-9]+")){
+		else if(string.equals(""))
+			return;
+		else if (!string.matches("[0-9]+")){
 			throw new IllegalArgumentException("String to search may only contains digits.");
 		}
 			
